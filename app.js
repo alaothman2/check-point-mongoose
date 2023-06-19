@@ -25,18 +25,6 @@ const personSchema = new mongoose.Schema({
 
 // Create the model
 const Person = mongoose.model("Person", personSchema);
-
-//3- Create and Save a Record of a Model:
-
-// when i run the code below with callback a new error in the console will appear :
-// //    Model.prototype.save() no longer accepts a callback :
-
-//   person.save(function(err, data) {
-//     if (err) return console.error(err);
-//     console.log('Person saved:', data);
-//   });
-// so i did it with promises
-
 function createOnePerson() {
   const person = new Person({
     name: "Thamer",
@@ -55,11 +43,12 @@ function createOnePerson() {
 function createManyPeople() {
   const arrayOfPeople = [
     { name: "Amal", age: 28, favoriteFoods: ["Sushi", "burritos"] },
-    { name: "Mohamed", age: 27, favoriteFoods: ["burritos", "Ice Cream"] },
+    { name: "thamer", age: 27, favoriteFoods: ["burritos", "Ice Cream"] },
     { name: "Mary", age: 31, favoriteFoods: ["burritos", "Pizza"] },
     { name: "Nizar", age: 28, favoriteFoods: ["Burger", "burritos"] },
-    { name: "Thamer", age: 28, favoriteFoods: ["Tacos", "Pizza"] },
+    { name: "alaa", age: 28, favoriteFoods: ["Tacos", "Pizza"] },
     { name: "Mary", age: 28, favoriteFoods: ["burritos", "Pasta"] },
+    { name: "Mohamed", age: 28, favoriteFoods: ["burritos", "Pasta"] },
   ];
   // Model.prototype.create() also no longer accepts a callback
   Person.create(arrayOfPeople)
@@ -125,7 +114,7 @@ function findByIdAndRemove() {
 }
 
 //11- MongoDB and Mongoose - Delete Many Documents with model.remove()
-// Person.remove() is not a function :'(
+
 function deleteManyByName() {
   const name = "Mary";
   Person.deleteMany({ name: name })
@@ -150,15 +139,3 @@ function searchQueryHelpers() {
     });
 }
 
-// you can execute these functions one by one and see the result in console and check your db 
-
-// createOnePerson()               // line 40
-// createManyPeople()              // line 55
-// findMany()                      // line 71
-// findOneByFood()                 // line 78 
-// findOneById()                   // line 87   modify the id in this func
-// findByIdEditSave()              // line 96   modify the id in this func
-// findByNameAndUpdateAge()        // line 112
-// findByIdAndRemove()             // line 120  modify the id in this func
-// deleteManyByName()              // line 129
-// searchQueryHelpers()            // line 139  
